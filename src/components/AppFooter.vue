@@ -20,7 +20,7 @@
     background-color: orange;
     padding: 10px 20px;
     border-radius: 20px;
-    height: 50px;
+    height: auto;
     width: 100%;
     box-sizing: border-box; /* Ensure padding doesn't increase width */
   }

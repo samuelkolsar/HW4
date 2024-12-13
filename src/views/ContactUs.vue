@@ -44,10 +44,12 @@
   
   <style scoped>
   .contact-page {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
+    max-width: 420px;
+    margin: 30px auto;
+    background: beige;
+    text-align: center;
+    padding: 40px;
+    border-radius: 10px;
   }
   
   h1 {

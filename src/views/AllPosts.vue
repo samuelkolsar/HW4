@@ -67,7 +67,7 @@ export default {
       }
     },
     Logout() {
-      this.$router.push('api/signup')
+      this.$router.push('/api/signup')
     }
   },
   mounted() {

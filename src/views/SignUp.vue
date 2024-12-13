@@ -1,13 +1,13 @@
 <template>
   <body>
   <div class="form">
-    <h3>SignUp</h3>
+    <h3>Sign Up</h3>
     <label for="email">Email</label>
     <input type="email" name="email"  required v-model="email">
     <label for="password">Password</label>
     <input type="password" name="password" required v-model="password">
     <div v-if="errMsg">{{errMsg}} </div>
-    <button @click="SignUp" class="SignUp">SignUp</button>
+    <button @click="SignUp" class="SignUp">Sign Up</button>
   </div>
   </body>
 </template>
@@ -69,17 +69,17 @@ SignUp() {
 .form {
   max-width: 420px;
   margin: 30px auto;
-  background: rgb(167, 154, 154);
+  background: beige;
   text-align: left;
   padding: 40px;
   border-radius: 10px;
 }
 h3 {
   text-align: center;
-  color: rgb(8, 110, 110);
+  color: black;
 }
 label {
-  color: rgb(8, 110, 110);
+  color: black;
   display: inline-block;
   margin: 25px 0 15px;
   font-size: 0.8em;
@@ -97,11 +97,11 @@ input {
   color: blue;
 }
 button {
-  background: rgb(8, 110, 110);
+  background: orange;
   border: 0;
   padding: 10px 20px;
   margin-top: 20px;
-  color: white;
+  color: black;
   border-radius: 20px;
   align-items: center;
   text-align: center;

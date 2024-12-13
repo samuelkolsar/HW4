@@ -74,7 +74,7 @@ input {
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid white;
-  color: blue;
+  color: black;
 }
 button {
   background: orange;
