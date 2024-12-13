@@ -1,50 +1,23 @@
 <template>
-    <div class="post">
-      <h2>
-        <img :src="post.profile_picture || '/images/me.png'" alt="Profile" class="profile-picture" />
-        <span>{{ post.created || 'Unknown Date' }}</span>
-      </h2>
-      <div v-if="post.photo">
-        <img :src="post.photo" alt="Post Image" class="post-image" />
-      </div>
-      <p>{{ post.comment || 'No content available' }}</p>
-      <div class="like-container">
-      <img
-        src="/images/like2.png"
-        alt="Like"
-        class="like-button"
-        @click="increaseLikeCount"
-      />
-      <span class="like-counter">{{ likeCount }}</span>
-    </div>
+  <div class="post">
+  <!-- esimene kuupäev, teine postitus -->
+    <h2>{{ post.title || 'Untitled' }}</h2>
+    <p>{{ post.body || 'No content available' }}</p>
   </div>
 </template>
   
 <script>
-  export default {
-    name: 'Post',
-    props: {
-      post: Object,
-    },
-// initialize the like count
-  data() {
-    return {
-      likeCount: 0,
-    };
-  },
-  methods: {
-// increment the like count
-    increaseLikeCount() {
-      this.likeCount++;
-    },
-// reset the like count to zero
-    resetLikeCount() {
-      this.likeCount = 0;
+export default {
+  name: "BlogPost",
+  props: {
+    post: {
+      type: Object,
+      required: true,
     },
   },
 };
 </script>
-  
+
 <style scoped>
 
   .post {
@@ -90,22 +63,11 @@
     gap: 20px; 
 }
 .post {
-    background-color: #fff; 
+    background-color: orange; 
     border: 1px solid #ccc;
     border-radius: 8px; 
     padding: 15px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-}
-
-.post-image {
-    width: 100%;
-    height: 100%;
-}
-
-.profile-picture {
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
+    box-shadow: black; 
 }
 
 .post h2 {
@@ -115,20 +77,6 @@
     align-items: center;
     font-size: small;
     font-weight: normal;
-}
-
-.like-button {
-    float: left;
-    margin-right: 10px;
-    width: 50px;
-    height: auto;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.post p img {
-    width: 100%;
-    height: 100%;
 }
 
 div > p {

@@ -58,7 +58,9 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: black;
+  text-decoration: underline;
+  
 }
 button{
   margin-top: 30px;

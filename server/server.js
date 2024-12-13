@@ -25,7 +25,7 @@ app.post('/api/posts', async(req, res) => {
         console.log("a post request has arrived");
         const post = req.body;
         const newpost = await pool.query(
-            "INSERT INTO posttable(title, body, urllink) values ($1, $2, $3)    RETURNING*", [post.title, post.body, post.urllink]
+            "INSERT INTO posttable(date, body values ($1, $2) RETURNING*", [post.date, post.body]
         );
         res.json(newpost);
     } catch (err) {
@@ -64,7 +64,7 @@ app.put('/api/posts/:id', async(req, res) => {
         const post = req.body;
         console.log("update request has arrived");
         const updatepost = await pool.query(
-            "UPDATE posttable SET (title, body, urllink) = ($2, $3, $4) WHERE id = $1 RETURNING*", [id, post.title, post.body, post.urllink]
+            "UPDATE posttable SET (date, body) = ($2, $3) WHERE id = $1 RETURNING*", [id, post.date, post.body]
         );
         res.json(updatepost);
     } catch (err) {
@@ -132,6 +132,17 @@ app.get('/auth/logout', (req, res) => {
     res.status(202).clearCookie('jwt').json({ "Msg": "cookie cleared" }).send
 });
 
+app.delete('/api/posts', async (req, res) => {
+    try {
+        console.log("Delete all posts request received");
+        await pool.query("DELETE FROM posttable");
+        res.status(200).send("All posts deleted successfully");
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Error deleting all posts");
+    }
+});
+  
 app.listen(port, () => {
     console.log("Server is listening to port " + port)
 });

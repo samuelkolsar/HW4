@@ -1,8 +1,7 @@
 <template>
     <header>
     <nav>
-      <router-link v-if="isLoggedIn" to="/api/allposts">Posts</router-link> |
-      <router-link to="/api/addpost">Add a Post</router-link> |
+      <router-link to="/api/allposts">Posts</router-link> |
       <router-link to="/api/signup">SignUp</router-link>|
       <router-link to="/api/login">Login</router-link>|
       <router-link to="/api/contact">Contact us</router-link>
@@ -34,8 +33,12 @@ nav {
 
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: black;
   text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
 }
 
 </style>
