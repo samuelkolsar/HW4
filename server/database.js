@@ -25,11 +25,10 @@ const execute = async(query1, query2) => {
 const createTblQuery1 = `
     CREATE TABLE IF NOT EXISTS "posttable" (
 	    "id" SERIAL PRIMARY KEY,         
-	    "date" DATE NOT NULL,
-	    "body" VARCHAR(200) NOT NULL,
+	    "date" VARCHAR(200) NOT NULL,
+	    "body" VARCHAR(200) NOT NULL
     );`;
 
-const mdea = 'INSERT INTO "posttable" (title, body) VALUES '
 
 const createTblQuery2 = `
     CREATE TABLE IF NOT EXISTS "users" (

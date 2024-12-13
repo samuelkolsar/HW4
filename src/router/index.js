@@ -9,7 +9,7 @@ import ContactUs from '@/views/ContactUs.vue';
 
 
 const routes = [{
-        path: '/',
+        path: '/api',
         name: 'AllPosts',
         component: () =>
             import ("../views/AllPosts.vue")

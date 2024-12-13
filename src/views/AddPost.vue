@@ -1,12 +1,8 @@
 <template>
   <div class="form">
     <h3>Add a Post</h3>
-    <label for="title">Title: </label>
-    <input name="title" type="text" id="title" required v-model="post.title" />
     <label for="body">Body: </label>
     <input name="body" type="text" id="body" required v-model="post.body" />
-    <label for="urllink">Url: </label>
-    <input name="urllink"  type="text" id="urllink" required v-model="post.urllink"/>
     <button @click="addPost" class="addPost">Add Post</button>
   </div>
 </template>
@@ -17,18 +13,15 @@ export default {
   data() {
     return {
       post: {
-        title: "",
         body: "",
-        urllink: "",
       },
     };
   },
   methods: {
     addPost() {
-      var data = {
-        title: this.post.title,
+      const data = {
         body: this.post.body,
-        urllink: this.post.urllink,
+        date: new Date().toISOString().split("T")[0], // Add today's date in YYYY-MM-DD format
       };
       fetch("http://localhost:3000/api/posts", {
         method: "POST",
@@ -37,14 +30,16 @@ export default {
         },
         body: JSON.stringify(data),
       })
-      .then((response) => {
-        console.log(response.data);
-        this.$router.push("/api/allposts");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error");
-      });
+        .then((response) => {
+          if (response.ok) {
+            this.$router.push("/api/allposts"); // Redirect to the all posts page
+          } else {
+            console.error("Failed to add post");
+          }
+        })
+        .catch((e) => {
+          console.error(e);
+        });
     },
   },
 };
@@ -54,17 +49,17 @@ export default {
 .form {
   max-width: 420px;
   margin: 30px auto;
-  background: rgb(167, 154, 154);
+  background: beige;
   text-align: left;
   padding: 40px;
   border-radius: 10px;
 }
 h3 {
   text-align: center;
-  color: rgb(8, 110, 110);
+  color: black;
 }
 label {
-  color: rgb(8, 110, 110);
+  color: black;
   display: inline-block;
   margin: 25px 0 15px;
   font-size: 0.8em;
@@ -82,13 +77,17 @@ input {
   color: blue;
 }
 button {
-  background: rgb(8, 110, 110);
+  background: orange;
   border: 0;
   padding: 10px 20px;
   margin-top: 20px;
-  color: white;
+  color: black;
   border-radius: 20px;
   align-items: center;
   text-align: center;
+}
+
+button:hover {
+  background: darkorange;
 }
 </style>

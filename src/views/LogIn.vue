@@ -23,30 +23,41 @@ data: function() {
   },
   methods: {
 LogIn() {
-      var data = {
+    var data = {
         email: this.email,
         password: this.password
-      };
-      fetch("http://localhost:3000/auth/login", {
+    };
+
+    fetch("http://localhost:3000/api/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
-          credentials: 'include', 
-          body: JSON.stringify(data),
-      })
-      .then((response) => response.json())
-      .then((data) => {
-      console.log(data);
-      location.assign("/");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error");
-      });
-    },
-  }, 
-  }
+        credentials: 'include',
+        body: JSON.stringify(data),
+    })
+    .then((response) => {
+        if (!response.ok) {
+            // If the response is not OK (status 401, 500, etc.), display the error and stay on the login page
+            return response.json().then((data) => {
+                console.log("Error:", data.error);  // Log the error from the server
+                alert(data.error);  // Optionally, display an error message to the user
+                throw new Error(data.error);  // Throw error to handle it in the catch block
+            });
+        }
+        return response.json(); // If response is ok, proceed to the next .then
+    })
+    .then((data) => {
+        console.log("Login successful:", data);
+        // Redirect to the home page if login is successful
+        location.assign("/api");
+    })
+    .catch((error) => {
+        console.log("Error during login:", error);
+    });
+}
+}
+}
 </script>
 
 <style scoped>

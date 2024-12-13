@@ -1,7 +1,7 @@
 <template>
   <div class="post">
   <!-- esimene kuupäev, teine postitus -->
-    <h2>{{ post.title || 'Untitled' }}</h2>
+    <h2>{{ post.date || 'Untitled' }}</h2>
     <p>{{ post.body || 'No content available' }}</p>
   </div>
 </template>
@@ -68,6 +68,10 @@ export default {
     border-radius: 8px; 
     padding: 15px; 
     box-shadow: black; 
+}
+
+.post:hover {
+  background-color: darkorange;
 }
 
 .post h2 {

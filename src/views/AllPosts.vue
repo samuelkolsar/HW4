@@ -17,8 +17,8 @@
     </div>
   </div>
   <div class="Buttons">
-    <a href="addpost"><button>Add post</button></a>
-    <button @click="deleteAll"> Delete all </button>
+    <a href="/api/addpost"><button>Add post</button></a>
+    <button @click="deleteAll">Delete all</button>
   </div>
   </body>
 </template>
@@ -67,7 +67,7 @@ export default {
       }
     },
     Logout() {
-      this.$router.push('signup')
+      this.$router.push('api/signup')
     }
   },
   mounted() {
@@ -85,10 +85,6 @@ a {
   color: black;
   text-decoration: none;
 }
-a:hover {
-  text-decoration: underline;
-}
-
 #post-list {
   background: beige;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
