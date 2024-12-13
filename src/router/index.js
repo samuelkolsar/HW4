@@ -4,6 +4,7 @@ import APost from "../views/APost.vue";
 import AddPost from "../views/AddPost.vue";
 import SignUp from "../views/SignUp.vue";
 import LogIn from "../views/LogIn.vue";
+import ContactUs from '@/views/ContactUs.vue';
 
 
 
@@ -38,6 +39,13 @@ const routes = [{
         name: "LogIn",
         component: LogIn,
     },
+
+    {
+        path: "/api/contact",
+        name: "ContactUs",
+        component: ContactUs,
+    },
+
     { //will route to AllPosts view if none of the previous routes apply
         path: "/:catchAll(.*)",
         name: "AllPosts",
