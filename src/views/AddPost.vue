@@ -20,11 +20,16 @@ export default {
   },
   methods: {
     addPost() {
-      const today = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
+      // Set the current date if not provided
+      if (!this.post.date) {
+        this.post.date = new Date().toISOString(); // ISO format, e.g., '2024-12-14T22:00:00.000Z'
+      }
+
       var data = {
         body: this.post.body,
-        date: today,
+        date: this.post.date,
       };
+
       fetch("http://localhost:3000/api/posts", {
         method: "POST",
         headers: {
@@ -32,9 +37,10 @@ export default {
         },
         body: JSON.stringify(data),
       })
-      .then((response) => {
-        console.log(response.data);
-        this.$router.push("/api/allposts");
+      .then((response) => response.json()) // Ensure you parse the JSON response
+      .then((responseData) => {
+        console.log(responseData);
+        this.$router.push("/api/allposts"); // Redirect after successful post creation
       })
       .catch((e) => {
         console.log(e);

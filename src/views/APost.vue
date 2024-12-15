@@ -2,7 +2,6 @@
   <div class="A Post">
     <div id="form">
       <h3>A Post</h3>
-      <div class="date">{{ formattedDate }}</div>
       <label for="body">Body: </label>
       <input name="body" type="text" id="body" required v-model="post.body" />
     </div>
@@ -65,17 +64,6 @@ export default {
   },
   mounted() {
     this.fetchAPost(this.$route.params.id);
-  },
-  computed: {
-    formattedDate() {
-      if (!this.post.date) return "";
-      const date = new Date(this.post.date);
-      return date.toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      });
-    },
   },
 };
 </script>
