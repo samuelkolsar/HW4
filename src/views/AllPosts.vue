@@ -67,7 +67,8 @@ export default {
       }
     },
     Logout() {
-      this.$router.push('/api/signup')
+      this.$store.dispatch('logOut');
+      this.$router.push('/api/login');
     }
   },
   mounted() {
@@ -106,24 +107,24 @@ a {
 }
 
 .Buttons {
-  display: flex; /* Make the container a flexbox */
-  justify-content: center; /* Center the buttons horizontally */
-  align-items: center; /* Align the buttons vertically */
-  gap: 100px; /* Add spacing between buttons */
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 100px; 
   margin: 25px;
 }
 
 .Buttons button {
   background-color: orange;
   padding: 15px 20px;
-  margin: 0; /* Remove margin for consistent spacing */
+  margin: 0; 
   border-radius: 15px;
   border: none;
   cursor: pointer;
 }
 
 .Buttons button:hover {
-  background-color: darkorange; /* Optional hover effect */
+  background-color: darkorange; 
 }
 
 @media (max-width: 768px) {

@@ -1,14 +1,23 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-  },
-  getters: {
+    loggedIn: false, // Track whether the user is logged in
   },
   mutations: {
+    SET_LOGGED_IN(state, status) {
+      state.loggedIn = status;
+    },
   },
   actions: {
+    logIn({ commit }) {
+      commit('SET_LOGGED_IN', true);
+    },
+    logOut({ commit }) {
+      commit('SET_LOGGED_IN', false);
+    },
   },
-  modules: {
-  }
-})
+  getters: {
+    isLoggedIn: (state) => state.loggedIn,
+  },
+});
