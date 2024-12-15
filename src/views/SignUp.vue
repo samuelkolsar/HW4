@@ -51,14 +51,27 @@ SignUp() {
           credentials: 'include', 
           body: JSON.stringify(data),
       })
-      .then((response) => response.json())
+      .then((response) => {
+      
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      return response.json();
+      })
       .then((data) => {
-      console.log(data);
-      this.$router.push("/");
+        console.log(data);
+        
+        if (data.success) {
+          this.$store.dispatch('logIn'); 
+          this.$router.push("/api/allposts"); 
+        } else {
+          
+          this.errMsg = data.error || "Sign-up failed.";
+        }
       })
       .catch((e) => {
-        console.log(e);
-        console.log("error");
+        console.error("Error during sign-up:", e);
+        this.errMsg = "An unexpected error occurred. Please try again.";
       });
     },
   }, 
