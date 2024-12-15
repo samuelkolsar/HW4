@@ -36,27 +36,25 @@ LogIn() {
         credentials: 'include',
         body: JSON.stringify(data),
     })
-    .then((response) => {
+      .then((response) => {
         if (!response.ok) {
-            // If the response is not OK (status 401, 500, etc.), display the error and stay on the login page
-            return response.json().then((data) => {
-                console.log("Error:", data.error);  // Log the error from the server
-                alert(data.error);  // Optionally, display an error message to the user
-                throw new Error(data.error);  // Throw error to handle it in the catch block
-            });
+          return response.json().then((data) => {
+            alert(data.error);
+            throw new Error(data.error);
+          });
         }
-        return response.json(); // If response is ok, proceed to the next .then
-    })
-    .then((data) => {
+        return response.json();
+      })
+      .then((data) => {
         console.log("Login successful:", data);
-        // Redirect to the home page if login is successful
-        location.assign("/api");
-    })
-    .catch((error) => {
+        this.$store.dispatch('logIn'); // Set user as logged in
+        this.$router.push("/api");
+      })
+      .catch((error) => {
         console.log("Error during login:", error);
-    });
-}
-}
+      });
+    }
+  }
 }
 </script>
 
