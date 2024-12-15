@@ -2,11 +2,12 @@ import { createStore } from 'vuex';
 
 export default createStore({
   state: {
-    loggedIn: false, // Track whether the user is logged in
+    loggedIn: localStorage.getItem('loggedIn') === 'true', // Load state from localStorage
   },
   mutations: {
     SET_LOGGED_IN(state, status) {
       state.loggedIn = status;
+      localStorage.setItem('loggedIn', status); // Save state to localStorage
     },
   },
   actions: {
