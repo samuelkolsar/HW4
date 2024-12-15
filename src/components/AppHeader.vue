@@ -1,16 +1,23 @@
 <template>
-    <header>
+  <header>
     <nav>
-      <router-link to="/api/allposts">Posts</router-link> |
+      <router-link v-if="isLoggedIn" to="/api/allposts">Posts</router-link>
+      <span v-else title="You must log in to access Posts">Posts</span>
+      |
       <router-link to="/api/contact">Contact us</router-link>
     </nav>
-    </header>
+  </header>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
-    name: 'AppHeader'
-}
+  name: 'AppHeader',
+  computed: {
+    ...mapGetters(['isLoggedIn']),
+  },
+};
 </script>
   
 <style>
