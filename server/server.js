@@ -27,7 +27,7 @@ app.post('/api/posts', async(req, res) => {
         const newpost = await pool.query(
             "INSERT INTO posttable(date, body) values ($1, $2) RETURNING*", [post.date, post.body]
         );
-        res.json(newpost);
+        res.json(newpost.rows[0]);
     } catch (err) {
         console.error(err.message);
     }
@@ -109,20 +109,24 @@ app.post('/auth/signup', async(req, res) => {
     }
 });
 
-app.post('/auth/login', async(req, res) => {
+app.post('/api/login', async(req, res) => {
     try {
         console.log("a login request has arrived");
         const { email, password } = req.body;
         const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
-        if (user.rows.length === 0) return res.status(401).json({ error: "User is not registered" });
+        console.log(user);
+        if (user.rows.length === 0) {
+            return res.status(401).json({ error: "User is not registered" });
+        }
         const validPassword = await bcrypt.compare(password, user.rows[0].password);
-        if (!validPassword) return res.status(401).json({ error: "Incorrect password" });
+        if (!validPassword) {
+            return res.status(401).json({ error: "Incorrect password" });
+        }
         const token = await generateJWT(user.rows[0].id);
         res
             .status(201)
             .cookie('jwt', token, { maxAge: 6000000, httpOnly: true })
             .json({ user_id: user.rows[0].id })
-            .send;
     } catch (error) {
         res.status(401).json({ error: error.message });
     }

@@ -55,6 +55,10 @@ export default {
   box-shadow: black;
 }
 
+.post:hover {
+  background-color: darkorange;
+}
+
 .post h2 {
   margin-bottom: 10px;
   display: flex;

@@ -29,7 +29,6 @@ const createTblQuery1 = `
 	    "body" VARCHAR(200) NOT NULL
     );`;
 
-const mdea = 'INSERT INTO "posttable" (date, body) VALUES '
 
 const createTblQuery2 = `
     CREATE TABLE IF NOT EXISTS "users" (

@@ -1,13 +1,13 @@
 <template>
   <div class="form">
-    <h3>LogIn</h3>
+    <h3>Log In</h3>
     <label for="email">Email</label>
     <input type="email" name="email"  required v-model="email">
     <label for="password">Password</label>
     <input type="password" name="password" required v-model="password">
     <div class="container">
-      <button @click="LogIn"  class="center">LogIn</button>
-      <button @click='this.$router.push("/api/signup")' class="center">Signup</button>
+      <button @click="LogIn"  class="center">Log In</button>
+      <button @click='this.$router.push("/api/signup")' class="center">Sign up</button>
     </div>
   </div>
 </template>
@@ -23,47 +23,58 @@ data: function() {
   },
   methods: {
 LogIn() {
-      var data = {
+    var data = {
         email: this.email,
         password: this.password
-      };
-      fetch("http://localhost:3000/auth/login", {
+    };
+
+    fetch("http://localhost:3000/api/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+            "Content-Type": "application/json",
         },
-          credentials: 'include', 
-          body: JSON.stringify(data),
-      })
-      .then((response) => response.json())
-      .then((data) => {
-      console.log(data);
-      location.assign("/");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error");
-      });
-    },
-  }, 
-  }
+        credentials: 'include',
+        body: JSON.stringify(data),
+    })
+    .then((response) => {
+        if (!response.ok) {
+            // If the response is not OK (status 401, 500, etc.), display the error and stay on the login page
+            return response.json().then((data) => {
+                console.log("Error:", data.error);  // Log the error from the server
+                alert(data.error);  // Optionally, display an error message to the user
+                throw new Error(data.error);  // Throw error to handle it in the catch block
+            });
+        }
+        return response.json(); // If response is ok, proceed to the next .then
+    })
+    .then((data) => {
+        console.log("Login successful:", data);
+        // Redirect to the home page if login is successful
+        location.assign("/api");
+    })
+    .catch((error) => {
+        console.log("Error during login:", error);
+    });
+}
+}
+}
 </script>
 
 <style scoped>
 .form {
   max-width: 420px;
   margin: 30px auto;
-  background: rgb(167, 154, 154);
+  background: beige;
   text-align: left;
   padding: 40px;
   border-radius: 10px;
 }
 h3 {
   text-align: center;
-  color: rgb(8, 110, 110);
+  color: black;
 }
 label {
-  color: rgb(8, 110, 110);
+  color: black;
   display: inline-block;
   margin: 25px 0 15px;
   font-size: 0.8em;
@@ -78,14 +89,14 @@ input {
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid white;
-  color: blue;
+  color: black;
 }
 button {
-  background: rgb(8, 110, 110);
+  background: orange;
   border: 0;
   padding: 10px 20px;
   margin: 20px 20px 20px 20px;
-  color: white;
+  color: black;
   border-radius: 20px;
   align-items: center;
   text-align: center;
