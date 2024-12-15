@@ -61,7 +61,7 @@ SignUp() {
       .then((data) => {
         console.log(data);
         
-        if (data.success) {
+        if (!data.success) {
           this.$store.dispatch('logIn'); 
           this.$router.push("/api/allposts"); 
         } else {
