@@ -53,7 +53,7 @@ export default {
 
 <style scoped>
 .form {
-  max-width: 420px;
+  width: 420px;
   margin: 30px auto;
   background: beige;
   text-align: left;
@@ -95,5 +95,11 @@ button {
 
 button:hover {
   background: darkorange;
+}
+
+@media (max-width: 768px) {
+  .form {
+    width: auto;
+  }
 }
 </style>

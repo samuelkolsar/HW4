@@ -91,7 +91,7 @@ a {
   margin-bottom: 30px;
   padding: 10px 20px;
   margin: auto;
-  width: 50%;
+  width: 500px;
   border-radius: 20px;
 }
 #post-list ul {
@@ -124,6 +124,12 @@ a {
 
 .Buttons button:hover {
   background-color: darkorange; /* Optional hover effect */
+}
+
+@media (max-width: 768px) {
+  #post-list {
+    width: auto;
+  }
 }
 
 </style>

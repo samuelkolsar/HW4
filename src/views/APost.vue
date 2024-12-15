@@ -1,7 +1,7 @@
 <template>
   <div class="A Post">
     <div id="form">
-      <h3>A Post</h3>
+      <h3>Update the Post</h3>
       <label for="body">Body: </label>
       <input name="body" type="text" id="body" required v-model="post.body" />
     </div>
@@ -70,9 +70,9 @@ export default {
 
 <style scoped>
 #form {
-  max-width: 420px;
+  width: 600px;
   margin: 30px auto;
-  background: orange;
+  background: beige;
   text-align: left;
   padding: 40px;
   border-radius: 10px;
@@ -97,7 +97,7 @@ input {
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid white;
-  color: blue;
+  color: black;
 }
 button {
   background: orange;
@@ -115,17 +115,13 @@ button:hover {
 .container {
   display: flex;
   justify-content: center;
+  gap: 20px;
 }
-.date {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: rgb(8, 110, 110);
-  font-size: 0.9em;
-  font-weight: bold;
-}
-#form {
-  position: relative; 
+
+@media (max-width: 768px) {
+  #form {
+    width: auto;
+  }
 }
 
 </style>

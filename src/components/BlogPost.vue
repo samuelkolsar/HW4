@@ -34,6 +34,8 @@ export default {
 <style scoped>
 .post {
   margin-bottom: 20px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .like-button {
@@ -81,25 +83,5 @@ div > p {
   .post-list {
     gap: 4px;
   }
-}
-
-.like-container {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.like-button {
-  width: 60px;
-  height: auto;
-  cursor: pointer;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
-.like-counter {
-  font-size: 20px;
-  font-weight: bold;
-  color: #555;
 }
 </style>
