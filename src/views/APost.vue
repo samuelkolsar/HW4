@@ -2,12 +2,9 @@
   <div class="A Post">
     <div id="form">
       <h3>A Post</h3>
-      <label for="title">Title: </label>
-      <input name="type" type="text" id="title" required v-model="post.title" />
+      <div class="date">{{ formattedDate }}</div>
       <label for="body">Body: </label>
       <input name="body" type="text" id="body" required v-model="post.body" />
-      <label for="url">Url: </label>
-      <input name="url" type="text" id="url" required v-model="post.urllink" />
     </div>
     <div class="container">
       <button @click="updatePost" class="updatePost">Update Post</button>
@@ -24,9 +21,8 @@ export default {
     return {
       post: {
         id: "",
-        title: "",
         body: "",
-        urllink: "",
+        date: "",
       },
     };
   },
@@ -69,6 +65,17 @@ export default {
   },
   mounted() {
     this.fetchAPost(this.$route.params.id);
+  },
+  computed: {
+    formattedDate() {
+      if (!this.post.date) return "";
+      const date = new Date(this.post.date);
+      return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+      });
+    },
   },
 };
 </script>
@@ -116,4 +123,16 @@ button {
   display: flex;
   justify-content: center;
 }
+.date {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: rgb(8, 110, 110);
+  font-size: 0.9em;
+  font-weight: bold;
+}
+#form {
+  position: relative; 
+}
+
 </style>

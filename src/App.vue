@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <AppHeader />
-    <router-view />
+    <div class ="main-content">
+      <router-view />
+    </div>
     <AppFooter />
   </div>
 </template>
@@ -41,11 +43,21 @@ export default {
 
 <style>
 #app {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 nav {

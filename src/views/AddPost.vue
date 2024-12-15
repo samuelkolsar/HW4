@@ -13,18 +13,17 @@ export default {
   data() {
     return {
       post: {
-        title: "",
         body: "",
-        urllink: "",
+        date: "",
       },
     };
   },
   methods: {
     addPost() {
+      const today = new Date().toISOString().split('T')[0]; // Format date as YYYY-MM-DD
       var data = {
-        title: this.post.title,
         body: this.post.body,
-        urllink: this.post.urllink,
+        date: today,
       };
       fetch("http://localhost:3000/api/posts", {
         method: "POST",

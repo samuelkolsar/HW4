@@ -14,8 +14,8 @@
   <style scoped>
   footer {
     display: flex;
-    text-align: left;
-    justify-content: space-between; /* Adjust content alignment if needed */
+    text-align: center;
+    justify-content: center; /* Adjust content alignment if needed */
     align-items: center;
     background-color: orange;
     padding: 10px 20px;
@@ -23,6 +23,7 @@
     height: 50px;
     width: 100%;
     box-sizing: border-box; /* Ensure padding doesn't increase width */
+    bottom: 0;
   }
   </style>
   
